@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مملكة العسل - أجود أنواع العسل الطبيعي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1586924558399-59a6cb5b42d2?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        /* Spinner for loading products */
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #f9b233;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 smooth-scroll">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-amber-600">🍯 مملكة العسل</a>
+            <div class="hidden md:flex space-x-8 space-x-reverse">
+                <a href="#home" class="text-gray-600 hover:text-amber-600 transition duration-300">الرئيسية</a>
+                <a href="#products" class="text-gray-600 hover:text-amber-600 transition duration-300">منتجاتنا</a>
+                <a href="#about" class="text-gray-600 hover:text-amber-600 transition duration-300">من نحن</a>
+                <a href="#contact" class="text-gray-600 hover:text-amber-600 transition duration-300">تواصل معنا</a>
+            </div>
+            <div class="relative">
+                <button id="cart-button" class="text-gray-600 hover:text-amber-600 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white h-[60vh] flex items-center justify-center text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">العسل الطبيعي، من الخلية إلى باب منزلك</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">اكتشف تشكيلتنا الفاخرة من العسل الخام والنقي، المحصود بعناية من أفضل المناحل حول العالم.</p>
+            <a href="#products" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">تسوق الآن</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">منتجاتنا المميزة</h2>
+            <!-- Products will be loaded here dynamically -->
+            <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Loading Spinner -->
+                <div id="loading-spinner" class="col-span-full">
+                    <div class="loader"></div>
+                    <p class="text-center text-gray-500">جاري تحميل المنتجات...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us, Contact, Modals... (The rest of the HTML is the same as before) -->
+    <!-- About Us Section -->
+    <section id="about" class="bg-white py-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?q=80&w=1974&auto=format&fit=crop" alt="منحل مملكة العسل" class="rounded-lg shadow-xl w-full h-auto">
+            </div>
+            <div class="md:w-1/2 text-center md:text-right">
+                <h2 class="text-3xl font-bold mb-4">قصتنا: شغف يتوارثه الأجيال</h2>
+                <p class="text-gray-600 leading-relaxed mb-4">في مملكة العسل، نحن نؤمن بأن العسل ليس مجرد طعام، بل هو دواء وشفاء. بدأت رحلتنا منذ عقود، حيث ورثنا حب تربية النحل وإنتاج العسل عن أجدادنا. نحرص على تقديم عسل طبيعي 100%، خالٍ من أي إضافات، مع الحفاظ على كافة خصائصه الغذائية والعلاجية.</p>
+                <p class="text-gray-600 leading-relaxed">نحن نسافر حول العالم لنختار لكم أفضل أنواع العسل، من عسل السدر الجبلي النادر إلى عسل المانوكا النيوزيلندي الفريد.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold mb-4">تواصل معنا</h2>
+            <p class="mb-6">نحن هنا للإجابة على جميع استفساراتكم.</p>
+            <div class="flex justify-center space-x-6 space-x-reverse text-lg">
+                <p>📧 info@honeykingdom.com</p>
+                <p>📞 +966 12 345 6789</p>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <p>&copy; 2025 مملكة العسل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 lg:w-1/3 p-6 relative">
+            <button id="close-cart-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <h2 class="text-2xl font-bold mb-6">سلة التسوق</h2>
+            <div id="cart-items" class="mb-6 max-h-64 overflow-y-auto"></div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center font-bold text-lg">
+                    <span>الإجمالي:</span>
+                    <span id="cart-total">0.00 ريال</span>
+                </div>
+                <button id="checkout-button" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-4 rounded-lg mt-6 transition duration-300">إتمام الطلب</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 md:w-1/2 lg:w-1/3 p-6 relative">
+             <button id="close-checkout-button" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            <h2 class="text-2xl font-bold mb-6">تفاصيل الطلب</h2>
+            <form id="checkout-form">
+                <div class="mb-4"><label for="name" class="block text-gray-700 mb-2">الاسم الكامل</label><input type="text" id="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></div>
+                <div class="mb-4"><label for="address" class="block text-gray-700 mb-2">العنوان</label><input type="text" id="address" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></div>
+                <div class="mb-4"><label for="phone" class="block text-gray-700 mb-2">رقم الهاتف</label><input type="tel" id="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500" required></div>
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg mt-4 transition duration-300">تأكيد الطلب</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success & Confirmation Messages -->
+    <div id="success-message" class="fixed top-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-lg hidden transform transition-transform duration-500 translate-x-full"><p>تم إضافة المنتج للسلة بنجاح!</p></div>
+    <div id="order-confirmation" class="fixed top-5 right-5 bg-blue-500 text-white py-3 px-6 rounded-lg shadow-lg hidden transform transition-transform duration-500 translate-x-full"><p>تم استلام طلبك بنجاح! سنتواصل معك قريباً.</p></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productList = document.getElementById('product-list');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const cartButton = document.getElementById('cart-button');
+            const cartModal = document.getElementById('cart-modal');
+            const closeCartButton = document.getElementById('close-cart-button');
+            const cartCount = document.getElementById('cart-count');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutButton = document.getElementById('checkout-button');
+            const checkoutModal = document.getElementById('checkout-modal');
+            const closeCheckoutButton = document.getElementById('close-checkout-button');
+            const checkoutForm = document.getElementById('checkout-form');
+            const successMessage = document.getElementById('success-message');
+            const orderConfirmation = document.getElementById('order-confirmation');
+
+            let cart = [];
+            let productsData = []; // To store product info for the cart
+
+            // ** NEW: Function to load products dynamically **
+            async function loadProducts() {
+                let i = 1;
+                let productsFound = false;
+                while (true) {
+                    try {
+                        const response = await fetch(`products/${i}.html`);
+                        if (response.ok) {
+                            const productHTML = await response.text();
+                            productList.insertAdjacentHTML('beforeend', productHTML);
+                            productsFound = true;
+                            i++;
+                        } else {
+                            // Stop when a file is not found (404 error)
+                            break;
+                        }
+                    } catch (error) {
+                        console.error('Error loading products:', error);
+                        break;
+                    }
+                }
+                // Hide spinner after loading
+                loadingSpinner.style.display = 'none';
+                if (!productsFound) {
+                    productList.innerHTML = '<p class="col-span-full text-center text-gray-500">لم يتم العثور على أي منتجات. حاول إضافة بعض المنتجات في مجلد `products`.</p>';
+                }
+            }
+
+            // --- Cart Logic (mostly unchanged, but adapted for dynamic buttons) ---
+            
+            function updateCartUI() {
+                cartItemsContainer.innerHTML = '';
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center">سلة التسوق فارغة.</p>';
+                    checkoutButton.disabled = true;
+                    checkoutButton.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    checkoutButton.disabled = false;
+                    checkoutButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    cart.forEach(item => {
+                        const cartItemHTML = `
+                            <div class="flex justify-between items-center mb-4 pb-2 border-b">
+                                <div>
+                                    <h4 class="font-semibold">${item.name}</h4>
+                                    <p class="text-sm text-gray-500">${item.price.toFixed(2)} ريال x ${item.quantity}</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-bold">${(item.price * item.quantity).toFixed(2)} ريال</span>
+                                    <button data-name="${item.name}" class="remove-from-cart-btn text-red-500 hover:text-red-700">&times;</button>
+                                </div>
+                            </div>`;
+                        cartItemsContainer.insertAdjacentHTML('beforeend', cartItemHTML);
+                    });
+                }
+                const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                cartTotal.textContent = `${total.toFixed(2)} ريال`;
+                cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+
+            function addToCart(productName, productPrice) {
+                const cartItem = cart.find(item => item.name === productName);
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({ name: productName, price: parseFloat(productPrice), quantity: 1 });
+                }
+                showSuccessMessage();
+                updateCartUI();
+            }
+
+            function removeFromCart(productName) {
+                cart = cart.filter(item => item.name !== productName);
+                updateCartUI();
+            }
+            
+            function showSuccessMessage() {
+                successMessage.classList.remove('hidden', 'translate-x-full');
+                successMessage.classList.add('translate-x-0');
+                setTimeout(() => {
+                    successMessage.classList.remove('translate-x-0');
+                    successMessage.classList.add('translate-x-full');
+                    setTimeout(() => successMessage.classList.add('hidden'), 500);
+                }, 2000);
+            }
+            
+            function showOrderConfirmation() {
+                orderConfirmation.classList.remove('hidden', 'translate-x-full');
+                orderConfirmation.classList.add('translate-x-0');
+                setTimeout(() => {
+                    orderConfirmation.classList.remove('translate-x-0');
+                    orderConfirmation.classList.add('translate-x-full');
+                    setTimeout(() => orderConfirmation.classList.add('hidden'), 500);
+                }, 3000);
+            }
+
+            // ** MODIFIED: Event listener for dynamically added buttons **
+            document.body.addEventListener('click', (e) => {
+                // Add to cart
+                if (e.target.classList.contains('add-to-cart-btn')) {
+                    const name = e.target.dataset.name;
+                    const price = e.target.dataset.price;
+                    if (name && price) {
+                        addToCart(name, price);
+                    }
+                }
+                // Remove from cart
+                if (e.target.classList.contains('remove-from-cart-btn')) {
+                    const name = e.target.dataset.name;
+                    if (name) {
+                        removeFromCart(name);
+                    }
+                }
+            });
+
+            // --- Modal and Form Event Listeners (unchanged) ---
+            cartButton.addEventListener('click', () => cartModal.classList.remove('hidden'));
+            closeCartButton.addEventListener('click', () => cartModal.classList.add('hidden'));
+            checkoutButton.addEventListener('click', () => {
+                cartModal.classList.add('hidden');
+                checkoutModal.classList.remove('hidden');
+            });
+            closeCheckoutButton.addEventListener('click', () => checkoutModal.classList.add('hidden'));
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                console.log('Order submitted:', {
+                    customer: {
+                        name: document.getElementById('name').value,
+                        address: document.getElementById('address').value,
+                        phone: document.getElementById('phone').value,
+                    },
+                    items: cart,
+                    total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+                });
+                cart = [];
+                updateCartUI();
+                checkoutForm.reset();
+                checkoutModal.classList.add('hidden');
+                showOrderConfirmation();
+            });
+
+            // ** Initialize the page **
+            loadProducts();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
+
